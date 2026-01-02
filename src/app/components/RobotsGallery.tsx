@@ -13,6 +13,7 @@ export default function RobotsGallery() {
   const [allItems, setAllItems] = useState<any[]>([]);
   const [selectedRobot, setSelectedRobot] = useState<any | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedYear, setSelectedYear] = useState<number | 'all'>('all');
   const [selectedItem, setSelectedItem] = useState<any | null>(null);
   const [detailViewItem, setDetailViewItem] = useState<any | null>(null);
 
@@ -32,6 +33,7 @@ export default function RobotsGallery() {
           specs: item.specs?.slice(0, 3) || ['Autonomous', 'Precision Control', 'Advanced Sensors'],
           tags: item.tags?.slice(0, 2) || ['Innovation', 'Engineering'],
           category: 'robots',
+          year: item.year,
         }))
       : galleryImages
           .filter((item: any) => item.category === 'robots')
@@ -43,6 +45,7 @@ export default function RobotsGallery() {
             specs: ['Autonomous', 'Precision Control', 'Advanced Sensors'],
             tags: ['Innovation', 'Engineering'],
             category: 'robots',
+            year: item.year,
           }));
 
     // Transform gallery items
@@ -52,6 +55,7 @@ export default function RobotsGallery() {
       title: item.title,
       description: item.description,
       color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+      year: item.year,
     }));
 
     console.log('✅ Transformed data:', { 
@@ -72,6 +76,36 @@ export default function RobotsGallery() {
     { id: 'competitions', label: 'Competitions' },
     { id: 'team', label: 'Team' },
   ];
+
+  // Get unique years from all items
+  const availableYears = Array.from(
+    new Set([...robotsData, ...galleryItems]
+      .map(item => item.year)
+      .filter(year => year !== undefined && year !== null))
+  ).sort((a, b) => (b as number) - (a as number));
+
+  // Apply both category and year filters
+  const getFilteredItems = () => {
+    let filtered = allItems;
+
+    // Apply category filter
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(item => item.category === selectedCategory);
+    }
+
+    // Apply year filter
+    if (selectedYear !== 'all') {
+      filtered = filtered.filter(item => item.year === selectedYear);
+    }
+
+    return filtered;
+  };
+
+  const filteredItems = getFilteredItems();
+  
+  // Calculate filtered counts
+  const filteredRobots = filteredItems.filter(item => item.category === 'robots');
+  const filteredGallery = filteredItems.filter(item => item.category !== 'robots');
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -153,11 +187,88 @@ export default function RobotsGallery() {
           }}>
             Precision-engineered machines and moments that showcase our innovation
           </p>
-          {/* Debug counter */}
+          {/* Dynamic counter showing filtered results */}
           <p style={{ fontSize: '0.85rem', color: '#94a3b8', marginTop: '0.75rem', fontFamily: 'Inter, sans-serif' }}>
-            {robotsData.length} robots • {galleryItems.length} gallery items • Total: {allItems.length}
+            {filteredRobots.length} robot{filteredRobots.length !== 1 ? 's' : ''} • {filteredGallery.length} gallery item{filteredGallery.length !== 1 ? 's' : ''} • Total: {filteredItems.length}
           </p>
         </motion.div>
+
+        {/* Year Filter - Compact style above category filters */}
+        {availableYears.length > 0 && (
+          <motion.div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.75rem',
+              marginBottom: '1.5rem',
+              flexWrap: 'wrap',
+            }}
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15, duration: 0.4 }}
+          >
+            <span style={{ 
+              fontSize: '0.85rem', 
+              fontWeight: 600, 
+              color: '#64748b',
+              letterSpacing: '0.02em',
+              fontFamily: 'Inter, sans-serif',
+            }}>
+              Year:
+            </span>
+            <button
+              onClick={() => setSelectedYear('all')}
+              style={{
+                padding: '0.5rem 1rem',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                letterSpacing: '0.02em',
+                border: selectedYear === 'all' ? 'none' : '1px solid #e2e8f0',
+                background: selectedYear === 'all' 
+                  ? 'linear-gradient(135deg, #64748b 0%, #475569 100%)' 
+                  : '#ffffff',
+                color: selectedYear === 'all' ? '#ffffff' : '#64748b',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                fontFamily: 'Inter, sans-serif',
+                boxShadow: selectedYear === 'all' 
+                  ? '0 2px 8px rgba(100, 116, 139, 0.3)' 
+                  : '0 1px 3px rgba(10, 26, 58, 0.05)',
+              }}
+            >
+              All
+            </button>
+            {availableYears.map((year) => (
+              <button
+                key={year}
+                onClick={() => setSelectedYear(year as number)}
+                style={{
+                  padding: '0.5rem 1rem',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.02em',
+                  border: selectedYear === year ? 'none' : '1px solid #e2e8f0',
+                  background: selectedYear === year 
+                    ? 'linear-gradient(135deg, #64748b 0%, #475569 100%)' 
+                    : '#ffffff',
+                  color: selectedYear === year ? '#ffffff' : '#64748b',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  fontFamily: 'Inter, sans-serif',
+                  boxShadow: selectedYear === year 
+                    ? '0 2px 8px rgba(100, 116, 139, 0.3)' 
+                    : '0 1px 3px rgba(10, 26, 58, 0.05)',
+                }}
+              >
+                {year}
+              </button>
+            ))}
+          </motion.div>
+        )}
 
         {/* Unified Category Filters - Premium Style */}
         <motion.div
@@ -203,17 +314,23 @@ export default function RobotsGallery() {
           ))}
         </motion.div>
 
-        {/* Combined Gallery Grid - Responsive */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap: '2.5rem',
-            minHeight: '200px',
-          }}
-        >
-          {/* Show robots if 'all' or 'robots' category is selected */}
-          {(selectedCategory === 'all' || selectedCategory === 'robots') && robotsData.map((robot) => (
+        {/* Combined Gallery Grid - Responsive with AnimatePresence */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`${selectedCategory}-${selectedYear}`}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+              gap: '2.5rem',
+              minHeight: '200px',
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            {/* Render filtered robots */}
+            {filteredRobots.map((robot) => (
             <motion.div
               key={robot.id}
               variants={itemVariants}
@@ -389,10 +506,8 @@ export default function RobotsGallery() {
             </motion.div>
           ))}
 
-          {/* Show gallery items for all other categories */}
-          {(selectedCategory === 'all' || selectedCategory !== 'robots') && galleryItems
-            .filter((item) => selectedCategory === 'all' || item.category === selectedCategory)
-            .map((item) => (
+          {/* Render filtered gallery items */}
+          {filteredGallery.map((item) => (
               <motion.div
                 key={item.id}
                 variants={itemVariants}
@@ -513,7 +628,30 @@ export default function RobotsGallery() {
                     </div>
                   </motion.div>
             ))}
-        </div>
+
+            {/* Empty State Message for filtered results */}
+            {filteredItems.length === 0 && (
+              <motion.div
+                style={{ 
+                  gridColumn: '1 / -1',
+                  textAlign: 'center', 
+                  padding: '4rem 2rem', 
+                  color: '#666' 
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                <p style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>
+                  No items found for the selected filters
+                </p>
+                <p style={{ fontSize: '0.9rem', color: '#94a3b8' }}>
+                  Try selecting different category or year filters
+                </p>
+              </motion.div>
+            )}
+          </motion.div>
+        </AnimatePresence>
 
         {/* Debug Info */}
         {robotsData.length === 0 && galleryItems.length === 0 && !isLoading && (
@@ -523,19 +661,6 @@ export default function RobotsGallery() {
               Robots: {robotsData.length}, Gallery: {galleryItems.length}
             </p>
           </div>
-        )}
-
-        {/* Empty State Message */}
-        {robotsData.length > 0 && galleryItems.length > 0 && allItems.filter((item) => selectedCategory === 'all' || item.category === selectedCategory).length === 0 && (
-          <motion.div
-            style={{ textAlign: 'center', padding: '4rem 2rem', color: '#666' }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <p style={{ fontSize: '1.1rem', fontWeight: 500 }}>🔍 No items found in this category yet</p>
-            <p style={{ fontSize: '0.95rem', color: '#999', marginTop: '0.5rem' }}>Check back soon for more content!</p>
-          </motion.div>
         )}
       </div>
 

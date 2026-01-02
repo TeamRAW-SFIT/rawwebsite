@@ -32,7 +32,7 @@ export const teamMembers: TeamMember[] = [
     role: 'CRC',
     department: 'Electronics',
     category: 'core',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/siddhant.jpg',
     createdAt: '2024-01-15',
   },
   {
@@ -41,7 +41,7 @@ export const teamMembers: TeamMember[] = [
     role: 'CO-CRC',
     department: 'Designer',
     category: 'core',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/dittino.jpg',
     createdAt: '2024-01-15',
   },
   {
@@ -50,7 +50,7 @@ export const teamMembers: TeamMember[] = [
     role: 'TREASURER',
     department: 'Coder',
     category: 'core',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/Taksh.jpg',
     createdAt: '2024-01-15',
   },
   {
@@ -77,7 +77,7 @@ export const teamMembers: TeamMember[] = [
     role: 'CO-SECRETARY',
     department: 'Coder',
     category: 'core',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/samruddhi.jpg',
     createdAt: '2024-01-15',
   },
   {
@@ -86,7 +86,7 @@ export const teamMembers: TeamMember[] = [
     role: 'EVENT HEAD',
     department: 'Coder',
     category: 'core',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/nandini.jpg',
     createdAt: '2024-01-15',
   },
   {
@@ -113,7 +113,7 @@ export const teamMembers: TeamMember[] = [
     role: 'CO-PUBLICITY HEAD',
     department: 'PR',
     category: 'core',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/pal.jpg',
     createdAt: '2024-01-15',
   },
   {
@@ -122,7 +122,7 @@ export const teamMembers: TeamMember[] = [
     role: 'INVENTORY HEAD',
     department: 'Designer',
     category: 'core',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/Shell.jpg',
     createdAt: '2024-01-15',
   },
   {
@@ -131,7 +131,7 @@ export const teamMembers: TeamMember[] = [
     role: 'INVENTORY MANAGER',
     department: 'Coder',
     category: 'core',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/Jash.jpg',
     createdAt: '2024-01-15',
   },
   // MENTORS
@@ -178,7 +178,7 @@ export const teamMembers: TeamMember[] = [
     role: 'TEAM MEMBER',
     department: 'Technical',
     category: 'members',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/Swanand.jpg',
     createdAt: '2024-03-10',
   },
   {
@@ -187,7 +187,7 @@ export const teamMembers: TeamMember[] = [
     role: 'TEAM MEMBER',
     department: 'Technical',
     category: 'members',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/Joshua.jpg',
     createdAt: '2024-03-10',
   },
   {
@@ -196,7 +196,7 @@ export const teamMembers: TeamMember[] = [
     role: 'TEAM MEMBER',
     department: 'Technical',
     category: 'members',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/siddha.jpg',
     createdAt: '2024-03-10',
   },
   {
@@ -205,7 +205,7 @@ export const teamMembers: TeamMember[] = [
     role: 'TEAM MEMBER',
     department: 'Technical',
     category: 'members',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/sarthak.jpg',
     createdAt: '2024-03-10',
   },
   {
@@ -214,7 +214,7 @@ export const teamMembers: TeamMember[] = [
     role: 'TEAM MEMBER',
     department: 'Technical',
     category: 'members',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/Jay.jpg',
     createdAt: '2024-03-10',
   },
   {
@@ -223,7 +223,7 @@ export const teamMembers: TeamMember[] = [
     role: 'TEAM MEMBER',
     department: 'Technical',
     category: 'members',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/Riyan.jpg',
     createdAt: '2024-03-10',
   },
   {
@@ -241,7 +241,7 @@ export const teamMembers: TeamMember[] = [
     role: 'TEAM MEMBER',
     department: 'Technical',
     category: 'members',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/sakshi.jpg',
     createdAt: '2024-03-10',
   },
   {
@@ -250,7 +250,7 @@ export const teamMembers: TeamMember[] = [
     role: 'TEAM MEMBER',
     department: 'Technical',
     category: 'members',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/Vansh.jpg',
     createdAt: '2024-03-10',
   },
   {
@@ -259,7 +259,7 @@ export const teamMembers: TeamMember[] = [
     role: 'TEAM MEMBER',
     department: 'Technical',
     category: 'members',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/Jwen.jpg',
     createdAt: '2024-03-10',
   },
   {
@@ -268,7 +268,7 @@ export const teamMembers: TeamMember[] = [
     role: 'TEAM MEMBER',
     department: 'Technical',
     category: 'members',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/parth.jpg',
     createdAt: '2024-03-10',
   },
   {
@@ -277,7 +277,7 @@ export const teamMembers: TeamMember[] = [
     role: 'TEAM MEMBER',
     department: 'Technical',
     category: 'members',
-    imageUrl: '/logo.png',
+    imageUrl: '/images/team/gunjan.jpg',
     createdAt: '2024-03-10',
   },
 ];

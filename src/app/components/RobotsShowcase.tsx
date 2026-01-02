@@ -47,6 +47,7 @@ const fallbackRobotsData = [
 
 export default function RobotsShowcase() {
   const { robots: contextRobots, isLoading } = useGlobalData();
+  const [selectedYear, setSelectedYear] = useState<number | 'all'>('all');
   
   // Use context robots if available and has data, otherwise use fallback
   const robotsSource = contextRobots && contextRobots.length > 0 
@@ -58,8 +59,19 @@ export default function RobotsShowcase() {
         description: robot.description,
         specs: robot.specs.slice(0, 3), // Show only first 3 specs
         tags: robot.tags.slice(0, 2), // Show only first 2 tags
+        year: robot.year,
       }))
     : fallbackRobotsData;
+
+  // Get unique years from robots data
+  const availableYears = Array.from(
+    new Set(robotsSource.map(robot => robot.year).filter(year => year !== undefined))
+  ).sort((a, b) => (b as number) - (a as number));
+
+  // Filter robots by selected year
+  const filteredRobots = selectedYear === 'all' 
+    ? robotsSource 
+    : robotsSource.filter(robot => robot.year === selectedYear);
 
   const [selectedRobot, setSelectedRobot] = useState<typeof robotsSource[0] | null>(null);
   const [detailViewRobot, setDetailViewRobot] = useState<typeof robotsSource[0] | null>(null);
@@ -108,6 +120,36 @@ export default function RobotsShowcase() {
           <p>Precision-engineered machines that push the boundaries of automation</p>
         </motion.div>
 
+        {/* Year Filter */}
+        {availableYears.length > 0 && (
+          <motion.div
+            className={styles.filterContainer}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className={styles.filterLabel}>Filter by Year:</div>
+            <div className={styles.filterButtons}>
+              <button
+                className={`${styles.filterBtn} ${selectedYear === 'all' ? styles.activeFilter : ''}`}
+                onClick={() => setSelectedYear('all')}
+              >
+                All Years
+              </button>
+              {availableYears.map((year) => (
+                <button
+                  key={year}
+                  className={`${styles.filterBtn} ${selectedYear === year ? styles.activeFilter : ''}`}
+                  onClick={() => setSelectedYear(year as number)}
+                >
+                  {year}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
         <motion.div
           className={styles.grid}
           variants={containerVariants}
@@ -115,7 +157,7 @@ export default function RobotsShowcase() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {robotsSource.map((robot) => (
+          {filteredRobots.map((robot) => (
             <motion.div
               key={robot.id}
               className={`${styles.card} ${selectedRobot?.id === robot.id ? styles.selected : ''}`}

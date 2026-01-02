@@ -12,6 +12,7 @@ export interface GalleryImage {
   category: string;
   uploadedBy?: string;
   createdAt?: string;
+  year?: number;
 }
 
 // TODO: Import your images here
@@ -29,6 +30,7 @@ export const galleryImages: GalleryImage[] = [
     imageUrl: '/images/gallery/placeholder.jpg',
     uploadedBy: 'Team RAW',
     createdAt: '2024-12-01',
+    year: 2025,
   },
   {
     _id: 'robot2',
@@ -38,6 +40,7 @@ export const galleryImages: GalleryImage[] = [
     imageUrl: '/images/gallery/placeholder.jpg',
     uploadedBy: 'Team RAW',
     createdAt: '2024-11-28',
+    year: 2025,
   },
   {
     _id: 'robot3',
@@ -47,6 +50,7 @@ export const galleryImages: GalleryImage[] = [
     imageUrl: '/images/gallery/placeholder.jpg',
     uploadedBy: 'Team RAW',
     createdAt: '2024-11-25',
+    year: 2024,
   },
   {
     _id: 'robot4',
@@ -56,6 +60,7 @@ export const galleryImages: GalleryImage[] = [
     imageUrl: '/images/gallery/placeholder.jpg',
     uploadedBy: 'Team RAW',
     createdAt: '2024-11-20',
+    year: 2023,
   },
 
   // EVENTS
@@ -67,6 +72,7 @@ export const galleryImages: GalleryImage[] = [
     imageUrl: '/images/gallery/placeholder.jpg',
     uploadedBy: 'Team RAW',
     createdAt: '2024-12-10',
+    year: 2024,
   },
 
   // WORKSHOPS
@@ -78,6 +84,7 @@ export const galleryImages: GalleryImage[] = [
     imageUrl: '/images/gallery/placeholder.jpg',
     uploadedBy: 'Team RAW',
     createdAt: '2024-12-05',
+    year: 2024,
   },
 ];
 
