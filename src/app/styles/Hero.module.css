@@ -7,6 +7,12 @@
   overflow: hidden;
   padding: 2rem 0;
   margin-top: 0px;
+
+  @media (max-width: 768px) {
+    min-height: auto;
+    padding: 4rem 0 2rem;
+    overflow: visible;
+  }
 }
 
 .backgroundGradient {
@@ -63,6 +69,13 @@
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 1rem;
+    text-align: center;
+  }
 }
 
 .leftContent {
@@ -70,6 +83,11 @@
   flex-direction: column;
   gap: 1.5rem;
   z-index: 10;
+
+  @media (max-width: 768px) {
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .badge {
@@ -145,6 +163,7 @@
 
   @media (max-width: 768px) {
     font-size: 1rem;
+    max-width: 100%;
   }
 }
 
@@ -157,6 +176,8 @@
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
+    align-items: stretch;
   }
 }
 
@@ -173,8 +194,10 @@
   white-space: nowrap;
 
   @media (max-width: 768px) {
-    padding: 0.65rem 1.5rem;
+    padding: 0.85rem 1.5rem;
     font-size: 0.95rem;
+    width: 100%;
+    white-space: normal;
   }
 }
 
@@ -263,7 +286,11 @@
   }
 
   @media (max-width: 768px) {
-    display: none;
+    display: flex;
+    height: auto;
+    min-height: 300px;
+    padding: 2rem 0;
+    position: static;
   }
 }
 
@@ -314,6 +341,31 @@
   @media (max-width: 1024px) {
     width: 320px;
     height: 400px;
+  }
+
+  @media (max-width: 768px) {
+    position: static;
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    min-height: 300px;
+    padding: 1.5rem;
+    overflow: visible;
+    border-radius: 30px;
+
+    img {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain;
+      transform: scale(1);
+    }
+  }
+
+  @media (max-width: 480px) {
+    max-width: 280px;
+    min-height: 250px;
+    padding: 1rem;
   }
 }
 

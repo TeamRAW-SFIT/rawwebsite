@@ -26,7 +26,7 @@ export default function RobotsPage() {
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem', textAlign: 'center' }}>
           <motion.h1
             style={{
-              fontSize: '3.5rem',
+              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
               fontFamily: 'Orbitron, sans-serif',
               color: 'var(--color-navy)',
               marginBottom: '1rem',
@@ -39,10 +39,11 @@ export default function RobotsPage() {
           </motion.h1>
           <motion.p
             style={{
-              fontSize: '1.2rem',
+              fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
               color: 'var(--color-gray-dark)',
               maxWidth: '600px',
               margin: '0 auto',
+              padding: '0 1rem',
             }}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
